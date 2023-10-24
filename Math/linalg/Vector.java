@@ -35,10 +35,12 @@ public class Vector {
      * Return a unit vector in the direction of this vector
      */
     public Vector getUnitVector() {
-        mag = this.magnitude();
+        float mag = this.magnitude();
+        float[] unitVectorEntries = new float[this.columns];
         // iterate over vector entries
         for (int i = 0; i < this.columns; i++) {
-
+            unitVectorEntries[i] = this.items[i] / mag;
         }
+        return new Vector(unitVectorEntries);
     }
 }
