@@ -71,16 +71,39 @@ public class Matrix {
     }
 
     /*
+     * Return true iff A can be multiplied with this Matrix.
+     */
+    public boolean canMultiplyWith(Matrix A) {return (this.columns == A.columns && this.rows == A.rows); }
+
+    /*
      * Return the product of this Matrix and A.
      */
-    public Matrix multiply(Matrix A) {
+    public Matrix multiply(Matrix A) throws MatrixDimensionException {
+        if (this.canMultiplyWith(A)) {
+            throw new UnsupportedOperationException("Not implemented yet.");
+        } else {
+            throw new MatrixDimensionException("Matrix dimensions do not match");
+        }
+    }
+
+    /*
+     * Return the determinant of this Matrix.
+     */
+    public double determinant() {
         throw new UnsupportedOperationException("Not implemented yet.");
     }
 
     /*
      * Return the convolution of A onto this Matrix.
      */
-    public Matrix convolveWith(Matrix A) {
+    public Matrix convolution(Matrix A) {
+        throw new UnsupportedOperationException("Not implemented yet.");
+    }
+
+    /*
+     * Return the inverse convolution of A onto this Matrix.
+     */
+    public Matrix inverseConvolution(Matrix A) {
         throw new UnsupportedOperationException("Not implemented yet.");
     }
 }
