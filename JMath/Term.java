@@ -1,4 +1,4 @@
-package Math;
+package JMath;
 
 public abstract class Term {
     ;

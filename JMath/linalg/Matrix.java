@@ -1,4 +1,4 @@
-package Math.linalg;
+package JMath.linalg;
 
 public class Matrix {
     
