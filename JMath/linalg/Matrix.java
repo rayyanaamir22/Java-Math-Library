@@ -18,7 +18,7 @@ public class Matrix {
     private double[][] grid;
 
     /*
-     * Matrix constructor method.
+     * Construct a Matrix with a 2D array.
      */
     public Matrix(double[][] arr) throws MatrixCreationException {
         if (Matrix.isValidMatrix(arr)) {
@@ -26,6 +26,17 @@ public class Matrix {
             // TODO: initialize row, columns
         } else {
             throw new MatrixCreationException("arr is not of the appropriate dimensions to construct a Matrix.");
+        }
+    }
+
+    /*
+     * Construct a null Matrix of shape row x col.
+     */
+    public Matrix(int row, int col) throws MatrixCreationException {
+        if (row > 0 && col > 0) {
+            this.grid = new double[row][col];
+        } else {
+            throw new MatrixCreationException("row or col dims must be stricly positive integers.");
         }
     }
 
