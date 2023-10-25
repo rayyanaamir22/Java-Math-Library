@@ -103,4 +103,31 @@ public class Vector {
             throw ArithmeticException("Subtracting vectors of different dimensions: " + this.columns + " and " + u.columns + ".");
         }
     }
+
+    /*
+     * Return the scalar dot product of this vector and u.
+     */
+    public double dot(Vector u) throws ArithmeticException {
+        if (this.columns == u.columns) {
+            double d = 0;
+            for (int i = 0; i < this.columns; i++) {
+                d += this.items[i] * u.items[i];
+            } return d;
+        } else {
+            // what is this error?
+            throw ArithmeticException("Dot product between vectors of different dimensions: " + this.columns + " and " + u.columns + ".");
+        }
+    }
+
+    /*
+     * Return the Vector cross product of this vector and u.
+     * Throw ArithmeticException for dimension conflict.
+     */
+    public Vector cross(Vector u) throws ArithmeticException {
+        if (this.columns == u.columns) {
+            throw UnsupportedOperationException();
+        } else {
+            throw ArithmeticException("Cross product between vectors of different dimensions: " + this.columns + " and " + u.columns + ".");
+        }
+    }
 }
