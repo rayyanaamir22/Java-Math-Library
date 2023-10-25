@@ -1,5 +1,4 @@
 package JMath.linalg;
-import JMath.linalg.MatrixCreationException;
 
 public class Matrix {
     /*
@@ -79,9 +78,9 @@ public class Matrix {
     }
 
     /*
-     * Return the convolution of this Matrix and A.
+     * Return the convolution of A onto this Matrix.
      */
-    public Matrix convolve(Matrix A) {
+    public Matrix convolveWith(Matrix A) {
         throw new UnsupportedOperationException("Not implemented yet.");
     }
 }

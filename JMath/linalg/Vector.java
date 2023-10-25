@@ -125,16 +125,24 @@ public class Vector {
      */
     public Vector cross(Vector u) throws ArithmeticException {
         if (this.columns == u.columns) {
-            throw new UnsupportedOperationException();
+            double[] cross_product = {
+                this.items[1] * u.items[2] - this.items[2] * u.items[1],
+                this.items[0] * u.items[2] - this.items[2] * u.items[0],
+                this.items[0] * u.items[1] - this.items[1] * u.items[0]
+            };
+            return new Vector(cross_product);
         } else {
             throw new ArithmeticException("Cross product between vectors of different dimensions: " + this.columns + " and " + u.columns + ".");
         }
     }
 
     /*
-     * Return the angle between this Vector and u in radians.
+     * Return the smaller angle between this Vector and u in radians.
      */
     public double angleWith(Vector u) throws ArithmeticException {
-        throw new UnsupportedOperationException("Not implemented yet.");
+        double dotProduct = this.dot(u);
+        double mag1 = this.magnitude();
+        double mag2 = u.magnitude();
+        return Math.acos(dotProduct / (mag1 * mag2));
     }
 }
