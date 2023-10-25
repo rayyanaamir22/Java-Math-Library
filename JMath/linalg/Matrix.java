@@ -25,7 +25,7 @@ public class Matrix {
             this.grid = arr;
             // TODO: initialize row, columns
         } else {
-            throw MatrixCreationException("arr is not of the appropriate dimensions to construct a Matrix.");
+            throw new MatrixCreationException("arr is not of the appropriate dimensions to construct a Matrix.");
         }
     }
 
@@ -51,5 +51,26 @@ public class Matrix {
             }
             System.out.println();
         }
+    }
+
+    /*
+     * Return the transposed Matrix.
+     */
+    public Matrix transpose() {
+        throw new UnsupportedOperationException("Not implemented yet.");
+    }
+
+    /*
+     * Return the product of this Matrix and A.
+     */
+    public Matrix multiply(Matrix A) {
+        throw new UnsupportedOperationException("Not implemented yet.");
+    }
+
+    /*
+     * Return the convolution of this Matrix and A.
+     */
+    public Matrix convolve(Matrix A) {
+        throw new UnsupportedOperationException("Not implemented yet.");
     }
 }

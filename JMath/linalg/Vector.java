@@ -71,7 +71,7 @@ public class Vector {
     }
 
     /*
-     * Return the sum of this vector and u.
+     * Return the sum of this Vector and u.
      */
     public Vector add(Vector u) throws ArithmeticException {
         if (this.columns == u.columns) {
@@ -83,12 +83,12 @@ public class Vector {
             return new Vector(vEntries);
         } else {
             // what is this error?
-            throw ArithmeticException("Adding vectors of different dimensions: " + this.columns + " and " + u.columns + ".");
+            throw new ArithmeticException("Adding vectors of different dimensions: " + this.columns + " and " + u.columns + ".");
         }
     }
 
     /*
-     * Return the difference when subtracting u from this vector
+     * Return the difference when subtracting u from this Vector.
      */
     public Vector subtract(Vector u) throws ArithmeticException {
         if (this.columns == u.columns) {
@@ -100,12 +100,12 @@ public class Vector {
             return new Vector(vEntries);
         } else {
             // what is this error?
-            throw ArithmeticException("Subtracting vectors of different dimensions: " + this.columns + " and " + u.columns + ".");
+            throw new ArithmeticException("Subtracting vectors of different dimensions: " + this.columns + " and " + u.columns + ".");
         }
     }
 
     /*
-     * Return the scalar dot product of this vector and u.
+     * Return the scalar dot product of this Vector and u.
      */
     public double dot(Vector u) throws ArithmeticException {
         if (this.columns == u.columns) {
@@ -115,19 +115,26 @@ public class Vector {
             } return d;
         } else {
             // what is this error?
-            throw ArithmeticException("Dot product between vectors of different dimensions: " + this.columns + " and " + u.columns + ".");
+            throw new ArithmeticException("Dot product between vectors of different dimensions: " + this.columns + " and " + u.columns + ".");
         }
     }
 
     /*
-     * Return the Vector cross product of this vector and u.
+     * Return the Vector cross product of this Vector and u.
      * Throw ArithmeticException for dimension conflict.
      */
     public Vector cross(Vector u) throws ArithmeticException {
         if (this.columns == u.columns) {
-            throw UnsupportedOperationException();
+            throw new UnsupportedOperationException();
         } else {
-            throw ArithmeticException("Cross product between vectors of different dimensions: " + this.columns + " and " + u.columns + ".");
+            throw new ArithmeticException("Cross product between vectors of different dimensions: " + this.columns + " and " + u.columns + ".");
         }
+    }
+
+    /*
+     * Return the angle between this Vector and u in radians.
+     */
+    public double angleWith(Vector u) throws ArithmeticException {
+        throw new UnsupportedOperationException("Not implemented yet.");
     }
 }
