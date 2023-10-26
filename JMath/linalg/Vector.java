@@ -1,5 +1,5 @@
 package JMath.linalg;
-import java.lang.Math;
+import java.lang.Math; // I need sqrt and arccos :(
 
 public class Vector {
     /*
@@ -52,7 +52,7 @@ public class Vector {
         float sum = 0;
         // iterate over vector entries
         for (int i = 0; i < this.items.length; i++) {
-            sum += Math.pow(this.items[i], 2);
+            sum += this.items[i] * this.items[i];
         }
         return Math.sqrt(sum);
     }

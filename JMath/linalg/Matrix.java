@@ -91,7 +91,10 @@ public class Matrix {
     /*
      * Return true iff A can be multiplied with this Matrix.
      */
-    public boolean canMultiplyWith(Matrix A) {return (this.columns == A.columns && this.rows == A.rows); }
+    public boolean canMultiplyWith(Matrix A) {
+        // note that we know each Matrix contains doubles, so the types are always compatible.
+        return (this.columns == A.columns && this.rows == A.rows); 
+    }
 
     /*
      * Return the product of this Matrix and A.
