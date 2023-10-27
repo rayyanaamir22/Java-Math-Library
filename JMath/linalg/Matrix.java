@@ -143,7 +143,7 @@ public class Matrix {
     /*
      * Return the determinant of this Matrix.
      */
-    public double getDeterminant() throws MatrixDimensionException {
+    public double getDeterminant() throws MatrixDimensionException, MatrixCreationException {
         if (this.isSquareMatrix()) {
             return this.getDeterminantHelper();
         } else {
@@ -155,7 +155,7 @@ public class Matrix {
      * Recursively compute the determinant of this square Matrix.
      * getDeterminant method confirms that this Matrix is a square Matrix.
      */
-    private double getDeterminantHelper() {
+    private double getDeterminantHelper() throws MatrixCreationException {
         int n = this.rows;
         
         // Base case: If it's a 1x1 matrix, return its only element as the determinant
@@ -182,10 +182,9 @@ public class Matrix {
     /*
      * Return the subMatrix as a 2D double array.
      */
-    private Matrix createSubMatrix(int excludeCol) {
+    private Matrix createSubMatrix(int excludeCol) throws MatrixCreationException {
         int n = this.rows;
         Matrix subMatrix = new Matrix(n - 1, n - 1);
-        int newRow = 0;
         
         for (int i = 0; i < n; i++) {
             if (i == 0) {
@@ -196,10 +195,9 @@ public class Matrix {
                 if (j == excludeCol) {
                     continue;
                 }
-                subMatrix[0][newCol] = matrix[i][j]; // TODO
+                subMatrix.set(0, newCol, this.grid[i][j]);
                 newCol++;
             }
-            newRow++;
         }
         
         return subMatrix;
