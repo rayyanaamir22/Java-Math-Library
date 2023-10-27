@@ -40,6 +40,27 @@ public class Matrix {
     }
 
     /*
+     * Get element at (row, col).
+     */
+    public double get(int row, int col) {
+        if (row < 0 || row >= this.rows || col < 0 || col >= this.columns) {
+            throw new IndexOutOfBoundsException("Index out of bounds");
+        }
+        return this.grid[row][col];
+    }
+
+    /*
+     * Set element at (row, col) to value.
+     */
+    public void set(int row, int col, double value) {
+        if (row < 0 || row >= this.rows || col < 0 || col >= this.columns) {
+            throw new IndexOutOfBoundsException("Index out of bounds");
+        }
+        this.grid[row][col] = value;
+    }
+
+
+    /*
      * Return true iff the 2D array can be compiled as a Matrix in the constructor.
      * A valid 2D array arr is one that is rectangular (same number of entries in each row)
      * and has atleast 1 row and column.
@@ -58,6 +79,9 @@ public class Matrix {
         }
     }
 
+    /*
+     * Return true iff this Matrix is a square (n x n for some natural n).
+     */
     public boolean isSquareMatrix() {
         return this.rows == this.columns;
     }
@@ -112,16 +136,75 @@ public class Matrix {
                 }
             } return new Matrix(product);
         } else {
-            throw new MatrixDimensionException("Matrix dimensions do not match");
+            throw new MatrixDimensionException("Matrix dimensions do not match.");
         }
     }
 
     /*
      * Return the determinant of this Matrix.
      */
-    public double getDeterminant() {
-        throw new UnsupportedOperationException("Not implemented yet.");
+    public double getDeterminant() throws MatrixDimensionException {
+        if (this.isSquareMatrix()) {
+            return this.getDeterminantHelper();
+        } else {
+            throw new MatrixDimensionException("Cannot compute determinant of non-square Matrix.");
+        }
     }
+
+    /*
+     * Recursively compute the determinant of this square Matrix.
+     * getDeterminant method confirms that this Matrix is a square Matrix.
+     */
+    private double getDeterminantHelper() {
+        int n = this.rows;
+        
+        // Base case: If it's a 1x1 matrix, return its only element as the determinant
+        if (n == 1) {
+            return this.grid[0][0];
+        }
+        
+        // Base case: If it's a 2x2 matrix, calculate the determinant
+        if (n == 2) {
+            return this.grid[0][0] * this.grid[1][1] - this.grid[0][1] * this.grid[1][0];
+        }
+
+        double determinant = 0.0;
+        for (int i = 0; i < n; i++) {
+            // create subMatrix
+            Matrix subMatrix = this.createSubMatrix(i);
+            // get determinant of subMatrix
+            double subDeterminant = subMatrix.getDeterminantHelper();
+            // Add the product of the cofactor and the corresponding element of the original matrix
+            determinant += (i % 2 == 0 ? 1 : -1) * this.grid[0][i] * subDeterminant;
+        } return determinant;
+    }
+
+    /*
+     * Return the subMatrix as a 2D double array.
+     */
+    private Matrix createSubMatrix(int excludeCol) {
+        int n = this.rows;
+        Matrix subMatrix = new Matrix(n - 1, n - 1);
+        int newRow = 0;
+        
+        for (int i = 0; i < n; i++) {
+            if (i == 0) {
+                continue;
+            }
+            int newCol = 0;
+            for (int j = 0; j < n; j++) {
+                if (j == excludeCol) {
+                    continue;
+                }
+                subMatrix[0][newCol] = matrix[i][j]; // TODO
+                newCol++;
+            }
+            newRow++;
+        }
+        
+        return subMatrix;
+    }
+
 
     /*
      * Return the transposed Matrix.
